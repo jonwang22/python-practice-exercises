@@ -5,6 +5,13 @@ list = [
     {"name": "Kaia", "ip": "172.16.254.3"}
 ]
 
+ip_list = [
+    "192.168.1.1",
+    "142.151.11.31",
+    "10.0.0.5",
+    "12.41.51.116",
+    "172.16.254.3"
+]
 # What data type is blacklisted?
 # print(type(blacklisted))
 # What data type is {} within blacklisted?
@@ -12,7 +19,7 @@ list = [
 # How do we print the IP Addresses from blacklisted?
 # print(blacklisted[0]["ip"])
 # Can we automate these prints with a conditional statement?
-ip_address = "172.16.254.3"
+# ip_address = "172.16.254.3"
 
 def matcher(ip_address, blacklist):
     for index in blacklist:
@@ -23,5 +30,6 @@ def matcher(ip_address, blacklist):
             print(f"IP Address did not match",index['name'])
 
 # Call the function
-matcher("10.0.0.5",list)
+for ip in ip_list:
+    matcher(ip,list)
 
