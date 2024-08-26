@@ -15,7 +15,13 @@ print(f"\nHello and welcome to Grand Haven!\nWe're pleased to have you dine with
 dates_name = input("What is your date's name?\n")
 
 # User input budget for date
-date_budget = input("What is your budget for tonight's date?\n")
+while True:
+    try:
+        date_budget = input("What is your budget for tonight's date?\n")
+        date_budget = float(date_budget)
+        break # Exit if conversion successful
+    except:
+        print("Invalid input. Please enter a numerical value for the budget.")
 
 # Restaurant Menu
 menu = {
@@ -35,7 +41,7 @@ menu = {
         "Ice Cream": {"Price": 3.0, "Ingredients": ["Heavy Cream", "Vanilla", "Chocolate Syrup"], "Dietary Info": "Dairy"}
     },
     "Beverages": {
-        "Milkshakes": {"Price": 6.0, "Ingredients": ["Strawberry", "Vanilla", "Chocolate", "Oreos", "Milk"], "Dietary Info": "Dairy"}, 
+        "Milkshake": {"Price": 6.0, "Ingredients": ["Strawberry", "Vanilla", "Chocolate", "Oreos", "Milk"], "Dietary Info": "Dairy"}, 
         "Coke": {"Price": 1.0, "Ingredients": ["Sugar", "Artificial Flavors"], "Dietary Info": "N/A"}, 
         "Water": {"Price": "Free", "Ingredients": ["Water"], "Dietary Info": "High Quality H20"}
     }
@@ -46,10 +52,10 @@ menu = {
 def display_menu(menu):
     print(f"\nHere's the menu for tonight. Please take a look and decide what you'd like to order.\n")
     displayed_menu = ""
-    for category, items in menu.items():
+    for category, dishes in menu.items():
         displayed_menu += f"{category}\n" + "-" * 28 + "\n"
-        for item, details in items.items():
-            displayed_menu += f"{item:<28}{details['Price']}\n"
+        for dish, details in dishes.items():
+            displayed_menu += f"{dish:<28}{details['Price']}\n"
         displayed_menu += "\n"
     return displayed_menu
 
@@ -57,3 +63,49 @@ def display_menu(menu):
 print(f"\n\nAmazing, thank you so much for that information.\nLet me take you to your seats and give you our menu.")
 
 print(display_menu(menu))
+
+# I need to get user input for the food/drink choices on the menu they would like to order and store that somewhere. 
+def get_order(menu, budget):
+    # Prompt user for order and validate input
+    orders = []
+    food_tab = 0
+    while True:
+        print(f"\nYour current budget is: ${budget:.2f}")
+        food_order = input("What would you like to order? (Type 'done' to finish): ")
+        
+        # Check if user wants to exit
+        if food_order.lower() == 'done':
+            break
+        
+        # Check if order is in the menu
+        found = False
+        for category, dishes in menu.items():
+            if food_order in dishes:
+                price = dishes[food_order]['Price']
+                if price == "Free":
+                    price = 0.0
+                if price <= budget:
+                    orders.append(food_order)
+                    food_tab += price
+                    budget -= price
+                    print(f"Added '{food_order}' to your order for ${price:.2f}.")
+                    found = True
+                    break
+                else:
+                    print(f"Insufficient budget for '{food_order}'.")
+                    found = True
+                    break
+        # If variable found is still false, then that means order was not found in the menu then this if not statement runs because if not false == if true.
+        if not found:
+            print(f"'{food_order}' is not on the menu. Please select a valid menu item.")
+    return orders, food_tab
+
+
+orders, check = get_order(menu, date_budget)
+
+print(f"Perfect, thank you for your order. We'll get your dishes right out to you.")
+
+print(f"I hope you and '{dates_name}' had a wonderful meal with us today. Would you like the check?")
+
+print(orders)
+print(check)
