@@ -9,7 +9,7 @@
 # Challenge: Based on all the user inputs, the script should decide whether the user will get a second date or not and tell the user the decision. 
 
 # Welcome user to restaurant
-print(f"\nHello and welcome to Grand Haven!\nWe're pleased to have you dine with us tonight.\nI see you have a partner with you tonight.\nI hope you both enjoy your evening with us.\nBefore we get started, I'll have to ask for some information.")
+print(f"\nHello and welcome to Grand Haven!\nWe're pleased to have you dine with us tonight.\nI see you have a partner with you tonight.\nI hope you both enjoy your evening with us.\nBefore we get started, I'll have to ask for some information.\n")
 
 # User input who is on the date with them
 dates_name = input("What is your date's name?\n")
@@ -70,7 +70,7 @@ def get_order(menu, budget):
     orders = []
     food_tab = 0
     while True:
-        print(f"\nYour current budget is: ${budget:.2f}")
+        print(f"\nYour current budget is: ${budget:.2f}\n")
         food_order = input("What would you like to order? (Type 'done' to finish): ")
         
         # Check if user wants to exit
@@ -80,32 +80,42 @@ def get_order(menu, budget):
         # Check if order is in the menu
         found = False
         for category, dishes in menu.items():
-            if food_order in dishes:
-                price = dishes[food_order]['Price']
-                if price == "Free":
-                    price = 0.0
-                if price <= budget:
-                    orders.append(food_order)
-                    food_tab += price
-                    budget -= price
-                    print(f"Added '{food_order}' to your order for ${price:.2f}.")
-                    found = True
-                    break
-                else:
-                    print(f"Insufficient budget for '{food_order}'.")
-                    found = True
-                    break
+            for dish_name in dishes:
+                if food_order.lower() == dish_name.lower():
+                    price = dishes[dish_name]['Price']
+                    if price == "Free":
+                        price = 0.0
+                    if price <= budget:
+                        orders.append(dish_name)
+                        food_tab += price
+                        budget -= price
+                        print(f"Added '{dish_name}' to your order for ${price:.2f}.")
+                        found = True
+                        break
+                    else:
+                        print(f"Insufficient budget for '{dish_name}'.")
+                        found = True
+                        break
         # If variable found is still false, then that means order was not found in the menu then this if not statement runs because if not false == if true.
         if not found:
             print(f"'{food_order}' is not on the menu. Please select a valid menu item.")
-    return orders, food_tab
+    return orders, food_tab, budget
 
 
-orders, check = get_order(menu, date_budget)
+orders, check, budget = get_order(menu, date_budget)
 
-print(f"Perfect, thank you for your order. We'll get your dishes right out to you.")
+print(f"\nPerfect, thank you for your order. We'll get your dishes right out to you.\n")
 
-print(f"I hope you and '{dates_name}' had a wonderful meal with us today. Would you like the check?")
+closeout_tab = input(f"\nI hope you and {dates_name} had a wonderful meal with us today. Would you like the check?]n")
 
-print(orders)
-print(check)
+if closeout_tab == 'y':
+    print(f"Great, I'll go get your check for you.")
+    print(f"So here is your check. This is what you've ordered {orders}")
+    print(f"You owe ${check:.2f} and your remaining budget is ${budget:.2f}.")
+else:
+    print(f"Apologies, your time with us is coming to an end and I must implore that you close our your bill.")
+    print(f"We have other customers to serve, now that you are finished, I ask that you pay your bill and leave.")
+    print(f"Apologies for pushing you out but I ask for your understanding. Thank you.")
+    print(f"So here is your check. This is what you've ordered {orders}")
+    print(f"You owe ${check:.2f} and your remaining budget is ${budget:.2f}.")
+
