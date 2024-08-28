@@ -91,6 +91,10 @@ def close_out(orders, check, budget, dates_name):
     print(f"Here is your check. This is what you've ordered: {orders}")
     print(f"You owe ${check:.2f} and your remaining budget is ${budget:.2f}.")
 
+def second_date(orders, check, date_budget):
+    
+
+
 if __name__ == "__main__":
     welcome_message()
     dates_name, date_budget = get_date_info()
