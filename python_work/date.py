@@ -8,6 +8,8 @@
 # At the end of the date user must agree to pay the bill and then their final budget is shown to them.
 # Challenge: Based on all the user inputs, the script should decide whether the user will get a second date or not and tell the user the decision. 
 
+from random import randint
+
 # Welcome user to restaurant
 def welcome_message():
     print("\nHello and welcome to Grand Haven!\nWe're pleased to have you dine with us tonight.\n"
@@ -44,7 +46,7 @@ def get_order(menu, budget):
     food_tab = 0
     while True:
         print(f"\nYour current budget is: ${budget:.2f}\n")
-        food_order = input("What would you like to order? (Type 'done' to finish): ")
+        food_order = input("What would you and {dates_name} like to order? (Type 'done' to finish): ")
         
         # Check if user wants to exit
         if food_order.lower() == 'done':
@@ -91,8 +93,15 @@ def close_out(orders, check, budget, dates_name):
     print(f"Here is your check. This is what you've ordered: {orders}")
     print(f"You owe ${check:.2f} and your remaining budget is ${budget:.2f}.")
 
-def second_date(orders, check, date_budget):
-    
+# This is a randomizer on second date with no conditions on whether you get a second date or not.
+def second_date():
+    diceroll = randint(0,100)
+    if diceroll < 50:
+        print(f"{dates_name} thinks you're a nice person but unfortunately was not feeling the vibe with you and decided to not have a second date. )")
+    elif diceroll == 50:
+        print(f"Wow, this date went so well. {dates_name} wants to get married now. That's wild. Congratulations!")
+    else:
+        print(f"{dates_name} really enjoyed time with you tonight. You will have a second date! Don't mess it up!")
 
 
 if __name__ == "__main__":
@@ -128,3 +137,4 @@ if __name__ == "__main__":
 
     orders, check, budget = get_order(menu, date_budget)
     close_out(orders, check, budget, dates_name)
+    second_date()
