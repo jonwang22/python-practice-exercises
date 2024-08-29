@@ -46,7 +46,7 @@ def get_order(menu, budget):
     food_tab = 0
     while True:
         print(f"\nYour current budget is: ${budget:.2f}\n")
-        food_order = input("What would you and {dates_name} like to order? (Type 'done' to finish): ")
+        food_order = input(f"What would you and {dates_name} like to order? (Type 'done' to finish): ")
         
         # Check if user wants to exit
         if food_order.lower() == 'done':
