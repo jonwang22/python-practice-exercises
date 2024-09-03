@@ -20,6 +20,14 @@ print(f"Items in directory: {count}")
 
 
 # Challenge
-
-for file in directory_list:
-    if file
+file_count = 0
+dir_count = 0
+for item in directory_list:
+    if os.path.isfile(os.path.join(directory, item)):
+        file_count += 1
+    elif os.path.isdir(os.path.join(directory, item)):
+        dir_count += 1
+    else:
+        print("what")
+print(f"File count: {file_count}")
+print(f"Directory count: {dir_count}")
