@@ -8,13 +8,13 @@
 import requests
 
 # Keeping this here in case I want to use it.
-# user_city = input("What city do you want to check the weather in?")
+user_city = input("What city do you want to check the weather in?")
 
 # I want to obtain the weather information from my IP address location. Its not an exact location where I am right now but it's close enough for now.
 def get_weather_now():
     url = "https://weatherapi-com.p.rapidapi.com/current.json"
 
-    querystring = {"q":"auto:ip"}
+    querystring = {"q": user_city}
 
     headers = {
 	    "x-rapidapi-key": "1800a143b9msh432dfcb7125690bp1283b8jsn4ddb72f7c6b0",
