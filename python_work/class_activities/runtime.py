@@ -14,6 +14,8 @@ def uptime_check(total, downtime):
     # I need to then find the percentage of uptime over total hours times 100. 
     uptime = total - downtime
     percent_up = uptime/total * 100
-    print(f"Your uptime percentage is {percent_up:.2f}%")
+    return percent_up
+    # print(f"Your uptime percentage is {percent_up:.2f}%")
 
-uptime_check(total, downtime)
+uptime = uptime_check(total, downtime)
+print(f"Your uptime percentage is {uptime:.2f}%")
