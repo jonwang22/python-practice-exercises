@@ -8,7 +8,7 @@
 import requests
 
 # Keeping this here in case I want to use it.
-user_city = input("What city do you want to check the weather in?")
+user_city = input("What city do you want to check the weather in? \n")
 
 # I want to obtain the weather information from my IP address location. Its not an exact location where I am right now but it's close enough for now.
 def get_weather_now():
@@ -94,7 +94,7 @@ feels_tempf = response["current"]["feelslike_f"]
 feels_tempc = response["current"]["feelslike_c"]
 
 
-print(f"Based off of your IP Address, it is currently {condition} in {city}, {state}, {country}.")
+print(f"It is currently {condition} in {city}, {state}, {country}.")
 print(f"The time is currently {localtime}.")
 print(f"The current temperature is {current_tempf}F, or {current_tempc}C.")
 print(f"Factoring in other conditions, the temperature feels like {feels_tempf}F, or {feels_tempc}C.")
