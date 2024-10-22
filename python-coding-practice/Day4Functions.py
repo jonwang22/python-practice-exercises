@@ -4,3 +4,26 @@
 
 # Enter temperature in Fahrenheit: 98.6
 # 98.6 Fahrenheit is 37.0 Celsius
+
+# Defining functions
+def fahrenheit_to_celsius(degree):
+    celsius = (degree - 32) * 5/9
+    print(f"{degree} Fahrenheit is {celsius:.1f} Celsius")
+    return celsius
+
+def celsius_to_fahrenheit(degree):
+    fahrenheit = (degree * 9/5) + 32
+    print(f"{degree} Celsius is {fahrenheit:.1f} Fahrenheit")
+    return fahrenheit
+
+# User determines temp unit
+temp_unit = input("What unit of temperature do you want to use(Fahrenheit or Celsius)? ")
+
+if temp_unit.lower() in ("fahrenheit", "f"):
+    degree_temp = float(input("Enter temp to convert: "))
+    fahrenheit_to_celsius(degree_temp)
+elif temp_unit.lower() in ("celsius", "c"):
+    degree_temp = float(input("Enter temp to convert: "))
+    celsius_to_fahrenheit(degree_temp)
+else:
+    print("Please select a proper temp unit.")
