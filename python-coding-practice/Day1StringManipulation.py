@@ -5,3 +5,7 @@
 # Enter a string: hello world
 # Reversed string: dlrow olleh
 
+# Take user input
+user_input = input("Enter a string: ")
+
+print(user_input[::-1])
