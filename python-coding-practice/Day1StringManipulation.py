@@ -8,4 +8,5 @@
 # Take user input
 user_input = input("Enter a string: ")
 
+# Reverse the user input with string slicing
 print(user_input[::-1])
