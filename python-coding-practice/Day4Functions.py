@@ -20,10 +20,10 @@ def celsius_to_fahrenheit(degree):
 temp_unit = input("What unit of temperature do you want to use(Fahrenheit or Celsius)? ")
 
 # If conditionals comparing user input if it matches expected unit of measurement.
-if temp_unit.lower() in ("fahrenheit", "f"):
+if temp_unit.lower() in ["fahrenheit", "f"]:
     degree_temp = float(input("Enter temp to convert: "))
     fahrenheit_to_celsius(degree_temp)
-elif temp_unit.lower() in ("celsius", "c"):
+elif temp_unit.lower() in ["celsius", "c"]:
     degree_temp = float(input("Enter temp to convert: "))
     celsius_to_fahrenheit(degree_temp)
 else:
